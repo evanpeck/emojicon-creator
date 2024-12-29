@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Emojicon </title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+      <h2>⚙️ Customize</h2>
+      
+      <!-- 1) 100-E emojis toggle + info icon -->
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="outOf100Toggle">
+          <span class="slider round"></span>
+        </label>
+        <span id="toggleLabel">
+          ⚖️ 100-emojis
+          <!-- 2) Info icon with a tooltip explanation -->
+          <span 
+            class="info-icon" 
+            title="When checked, your total emojis become exactly 100, proportionally distributed.">
+            ℹ️
+          </span>
+        </span>
+      </div>
+
+      <!-- Bar-graph toggle -->
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="barGraphToggle">
+          <span class="slider round"></span>
+        </label>
+        <span id="barGraphLabel">📊 Bar-Mode</span>
+      </div>
+
+      <!-- 3) Smaller width input -->
+      <div class="toggle-container">
+        <input
+          type="number"
+          id="gridWidthInput"
+          min="1"
+          max="50"
+          value="10"
+        />
+        <label for="gridWidthInput">Row Width</label>
+      </div>
+    </div>
+  </div> 
+
+  <header>
+    <h1>
+      😀 Emoj<span class="highlight">icon</span> Creator 🔢
+    </h1>
+    <!-- 4) Small subtitle under the main title -->
+    <p class="subtitle">
+    Icon arrays can help people understand data. Try creating + sharing your own!
+    </p>
+  </header>
+
+  <!-- <emoji-picker id="emojiPicker"></emoji-picker> -->
+
+  <div class="input-container">
+    <input 
+      type="text" 
+      id="emojiInput" 
+      placeholder="e.g., 10😀, 20🏘️" 
+      value="21☀️ 16☁️ 13☔️"
+    />
+    <button id="emojiButton" title="Pick an emoji">😊</button>
+  </div>
+
+  <emoji-picker id="emojiPicker"></emoji-picker>
+  
+  <div class="button-container">
+    <button id="gearButton" title="More options!" class="gear-btn">⚙️</button>
+    <button id="randomizeButton" title="Scramble the grid" style="display: none;">🎲</button>
+    <button id="copyButton" title= "Copy as text" style="display: none;">📋 Copy </button>
+  </div>
+
+  <div id="emojiGrid"></div>
+
+  <footer>
+    A tiny tool created by <a href="https://evanpeck.github.io/">Evan Peck</a> + the <a href="https://infovisions.github.io/">Information Visions Lab 📊❤️</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+/* ------------------------------------------
+   FONT IMPORT
+------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* ------------------------------------------
+   GLOBAL & BODY
+------------------------------------------ */
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  background-color: #fdfdfd;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: #65a7ed; /* Bright blue for good contrast */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffffff; /* Darker blue for hover state */
+  text-decoration: underline;
+}
+
+/* ------------------------------------------
+   HEADER
+------------------------------------------ */
+header {
+  text-align: center;
+  padding: 30px 10px;
+  background-color: #001f3f; /* Dark navy */
+  color: #fff;              /* High contrast against navy */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+  /* inherits color: #fff from header */
+}
+header h1 .highlight {
+  color: red; /* Visible on a navy background, but feel free to tweak */
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #ccc; /* Lighter gray for good contrast on navy */
+  margin: 0;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ------------------------------------------
+   SHARED ANIMATIONS / UTILITIES
+------------------------------------------ */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-3px); }
+  50%      { transform: translateX(3px); }
+  75%      { transform: translateX(-3px); }
+}
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+/* ------------------------------------------
+   TOGGLE SWITCHES
+------------------------------------------ */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #007BFF;
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+#toggleLabel {
+  font-size: 1em;
+  color: #333;
+}
+
+/* 1) Smaller numeric input */
+#gridWidthInput {
+  width: 50px; /* Adjust as desired */
+}
+
+/* 2) Style the info icon, if desired */
+.info-icon {
+  cursor: help;
+  font-size: 0.9em;
+  margin-left: 4px;
+}
+
+/* ------------------------------------------
+   INPUT + BUTTONS
+------------------------------------------ */
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+input {
+  width: 50%;
+  max-width: 300px;
+  padding: 12px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  font-size: 1.25em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Container for Randomize & Copy Buttons */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ------------------------------------------
+   EMOJI GRID (DEFAULT MODE)
+------------------------------------------ */
+#emojiGrid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  margin: 20px auto;
+  max-width: 500px;
+}
+.emoji {
+  text-align: center;
+  font-size: 1.6em; 
+  line-height: 1; 
+  aspect-ratio: 1 / 1;
+}
+
+/* ------------------------------------------
+   BAR GRAPH MODE
+------------------------------------------ */
+#emojiGrid.bar-graph {
+  display: block; /* Instead of grid */
+  margin: 20px auto;
+  max-width: 500px;
+}
+#emojiGrid.bar-graph .bar-row {
+  display: block;
+  white-space: nowrap;
+  margin: 4px 0;
+  font-size: 1.6em;
+  line-height: 1;
+  text-align: left;
+}
+
+/* ------------------------------------------
+   SIDEBAR + GEAR
+------------------------------------------ */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px; /* Start off-screen */
+  width: 200px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+.sidebar.open {
+  left: 0; /* Slide into view */
+}
+.sidebar h2 {
+  font-weight: bold;
+  color: #333;
+}
+
+.gear-btn {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.gear-btn:hover {
+  transform: rotate(20deg);
+}
+
+.main-content {
+  transition: margin-left 0.3s ease-in-out;
+  margin-left: 0;
+}
+.sidebar.open ~ .main-content {
+  margin-left: 240px; /* Shift to accommodate the sidebar */
+}
+
+/* ------------------------------------------
+   EMOJI PICKER
+------------------------------------------ */
+emoji-picker {
+  position: absolute;
+  top: 10px;     
+  right: 10px;   
+  display: none;
+  z-index: 10;
+}
+
+/* ------------------------------------------
+   FOOTER
+------------------------------------------ */
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9em;
+  background-color: #001f3f; /* Same dark navy as header */
+  color: #fff;              /* High contrast text */
+  /* Optional border if desired, e.g.: 
+     border-top: 1px solid #003366; 
+  */
+}
